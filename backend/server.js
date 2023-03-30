@@ -6,7 +6,7 @@ const paymentRoutes = require("./routes/testRoute");
 const uploadRoutes = require("./routes/uploadRoutes");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 require("./middlewares/auth");
 require("./models/index");
 const app = express();
@@ -17,6 +17,12 @@ app.use(
     extended: true,
   })
 );
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://lifeofabblogs.onrender.com/"],
+  })
+);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
