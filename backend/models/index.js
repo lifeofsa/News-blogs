@@ -14,9 +14,9 @@ const User = require("./userModel");
 // User.sync({ alter: true });
 // ImageData.sync();
 // Extra.sync();
-sequelize.sync({ alter: true }).then(() => {
-  console.log("yes re-sync done!");
-});
+// sequelize.sync({ alter: true }).then(() => {
+//   console.log("yes re-sync done!");
+// });
 // 1 to many relation for Users and Blogs
 User.hasMany(Blog, { foreignKey: "creator_id", as: "blog" });
 Blog.belongsTo(User, { foreignKey: "creator_id", as: "user" });
