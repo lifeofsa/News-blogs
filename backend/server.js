@@ -21,7 +21,6 @@ app.use(
   cors({
     origin: ['http://localhost:3000', 'https://lifeofabblogss.onrender.com'],
     credentials: true,
-    all,
   })
 );
 
