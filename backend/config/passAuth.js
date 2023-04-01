@@ -1,5 +1,5 @@
-const passport = require("passport");
+const passport = require('passport');
 
-const protect = passport.authenticate("jwt", { session: false });
+const protect = passport.authenticate('jwt', { session: false });
 
 module.exports = protect;

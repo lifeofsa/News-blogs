@@ -7,6 +7,7 @@ const uploadRoutes = require('./routes/uploadRoutes');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const admin = require('./middlewares/oAuth').default;
 require('./middlewares/auth');
 require('./models/index');
 const app = express();
@@ -19,7 +20,11 @@ app.use(
 );
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://lifeofabblogss.onrender.com'],
+    origin: [
+      'http://localhost:3000',
+      'https://lifeofabblogss.onrender.com',
+      'https://ofyourchoice.net',
+    ],
     credentials: true,
   })
 );

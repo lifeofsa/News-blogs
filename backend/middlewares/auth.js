@@ -1,10 +1,10 @@
-const passport = require("passport");
-const passwortJwt = require("passport-jwt");
-const User = require("../models/userModel");
+const passport = require('passport');
+const passwortJwt = require('passport-jwt');
+const User = require('../models/userModel');
 const ExtractJwt = passwortJwt.ExtractJwt;
 const StrategyJwt = passwortJwt.Strategy;
 
-const env = require("dotenv");
+const env = require('dotenv');
 env.config();
 passport.use(
   new StrategyJwt(

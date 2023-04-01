@@ -75,6 +75,19 @@ const blogUpdateId = asyncHandler(async (req, res) => {
     res.send(error);
   }
 });
+const blogDeleteById = asyncHandler(async (req, res) => {
+  try {
+    const blog = await Blog.findOne({ where: { id: req.params.id } });
+    if (blog) {
+      await blog.destroy();
+      res.send('Blog Deleted');
+    } else {
+      res.send('Blog Not Found');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 const blogById = asyncHandler(async (req, res) => {
   const blog = await Blog.findOne({
@@ -92,4 +105,10 @@ const blogById = asyncHandler(async (req, res) => {
     res.send('No Blogs Found');
   }
 });
-module.exports = { getAllBlogs, postBlog, blogUpdateId, blogById };
+module.exports = {
+  getAllBlogs,
+  postBlog,
+  blogUpdateId,
+  blogById,
+  blogDeleteById,
+};
