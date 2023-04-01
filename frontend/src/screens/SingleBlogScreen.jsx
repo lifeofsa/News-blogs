@@ -1,9 +1,9 @@
-import { Box, Center, Container, Image, Stack, Text } from "@chakra-ui/react";
-import dayjs from "dayjs";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { blogGetByIdAction } from "../actions/blogsAction";
+import { Box, Center, Container, Image, Stack, Text } from '@chakra-ui/react';
+import dayjs from 'dayjs';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { blogGetByIdAction } from '../actions/blogsAction';
 
 const SingleBlogScreen = () => {
   const dispatch = useDispatch();
@@ -14,18 +14,18 @@ const SingleBlogScreen = () => {
 
   useEffect(() => {
     dispatch(blogGetByIdAction(blogId));
-  }, []);
+  }, [blogId, dispatch]);
 
   return (
     <>
       <Stack py={50} align="center">
         <Center>
           <Text fontWeight="bold" textColor="#aeacac">
-            {dayjs(blog?.createdAt).format("MMM DD, YYYY")}
+            {dayjs(blog?.createdAt).format('MMM DD, YYYY')}
           </Text>
         </Center>
         <Center>
-          <Text textAlign="center" fontSize="30" style={{ fontWeight: "bold" }}>
+          <Text textAlign="center" fontSize="30" style={{ fontWeight: 'bold' }}>
             {blog?.title}
           </Text>
         </Center>

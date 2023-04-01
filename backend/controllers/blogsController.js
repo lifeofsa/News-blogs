@@ -1,11 +1,11 @@
-const Blog = require("../models/blogModel");
-const User = require("../models/userModel");
-const cloudinary = require("../extras/cloudinary");
-const asyncHandler = require("express-async-handler");
-const Extra = require("../models/extrasModel");
-const { Buffer } = require("node:buffer");
-const pl = require("../routes/uploadRoutes");
-const upload = require("../routes/uploadRoutes");
+const Blog = require('../models/blogModel');
+const User = require('../models/userModel');
+const cloudinary = require('../extras/cloudinary');
+const asyncHandler = require('express-async-handler');
+const Extra = require('../models/extrasModel');
+const { Buffer } = require('node:buffer');
+const pl = require('../routes/uploadRoutes');
+const upload = require('../routes/uploadRoutes');
 
 const postBlog = asyncHandler(async (req, res) => {
   const { name, email, description, title } = req.body;
@@ -15,11 +15,11 @@ const postBlog = asyncHandler(async (req, res) => {
   try {
     const blog = new Blog({
       creator_id: req.user.id,
-      image: "",
+      image: '',
       name: req.user.name,
       email: req.user.email,
-      description: "sample description",
-      title: "sample Title",
+      description: 'sample description',
+      title: 'sample Title',
     });
 
     const createdOrder = await blog.save();
@@ -35,7 +35,7 @@ const getAllBlogs = async (req, res) => {
     include: [
       {
         model: Extra,
-        as: "extra",
+        as: 'extra',
       },
     ],
   });
@@ -49,7 +49,7 @@ const blogUpdateId = asyncHandler(async (req, res) => {
   try {
     if (blogs) {
       if (filepath) {
-        const result = await cloudinary.uploader.upload(filepath?.path);
+        const result = await cloudinary.uploader.upload(filepath.path);
         blogs.title = title;
         blogs.name = req.user.name;
         blogs.email = req.user.email;
@@ -70,7 +70,7 @@ const blogUpdateId = asyncHandler(async (req, res) => {
         res.json(blogWithoutImage);
       }
     } else {
-      res.status(404).send("Blog Not found");
+      res.status(404).send('Blog Not found');
     }
   } catch (error) {
     res.send(error);
@@ -83,14 +83,14 @@ const blogById = asyncHandler(async (req, res) => {
     include: [
       {
         model: Extra,
-        as: "extra",
+        as: 'extra',
       },
     ],
   });
   if (blog) {
     res.send(blog);
   } else {
-    res.send("No Blogs Found");
+    res.send('No Blogs Found');
   }
 });
 module.exports = { getAllBlogs, postBlog, blogUpdateId, blogById };

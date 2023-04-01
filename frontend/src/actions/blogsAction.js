@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   BLOGS_EXTRA_FAIL,
   BLOGS_EXTRA_REQUEST,
@@ -21,7 +21,7 @@ import {
   EXTRA_PUT_FAIL,
   EXTRA_PUT_REQUEST,
   EXTRA_PUT_SUCCESS,
-} from "../constants/BlogsConstants";
+} from '../constants/BlogsConstants';
 
 // export const blogsActionPost = (formBody) => async (dispatch, getState) => {
 //   try {
@@ -60,7 +60,7 @@ export const getAllBlogsAction = () => async (dispatch) => {
       type: BLOGS_REQUEST_GET,
     });
 
-    const { data } = await axios.get("/api/blogs");
+    const { data } = await axios.get('/api/blogs');
     dispatch({
       type: BLOGS_SUCCESS_GET,
       payload: data,
@@ -84,8 +84,8 @@ export const blogsActionPost = () => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    const { data } = await axios("/api/blogs/addBlog", {
-      method: "POST",
+    const { data } = await axios('/api/blogs/addBlog', {
+      method: 'POST',
       data: {},
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
@@ -119,7 +119,7 @@ export const blogActionUpdate =
       } = getState();
 
       const { data } = await axios(`/api/blogs/addBlog/edit/${id}`, {
-        method: "PUT",
+        method: 'PUT',
         data: formData,
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -151,10 +151,10 @@ export const blogGetByIdAction = (id) => async (dispatch, getState) => {
     } = getState();
 
     const { data } = await axios(`/api/blogs/${id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
+      method: 'GET',
+      // headers: {
+      //   Authorization: `Bearer ${userInfo.token}`,
+      // },
     });
     dispatch({
       type: BLOGS_SUCCESS_BYID,
@@ -182,7 +182,7 @@ export const blogExtraGetByIdAction =
       } = getState();
 
       const { data } = await axios(`/api/blogs/addBlog/${id}`, {
-        method: "POST",
+        method: 'POST',
         data: formData,
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -214,7 +214,7 @@ export const extraPutAction = (formData, id) => async (dispatch, getState) => {
     } = getState();
 
     const { data } = await axios(`/api/blogs/addBlog/extra/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       data: formData,
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
@@ -249,7 +249,7 @@ export const extraDeleteAction = (id) => async (dispatch, getState) => {
     } = getState();
 
     const { data } = await axios(`/api/blogs/addBlog/extra/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
